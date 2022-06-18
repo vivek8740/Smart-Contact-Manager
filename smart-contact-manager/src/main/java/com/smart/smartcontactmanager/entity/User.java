@@ -12,6 +12,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "USER")
@@ -20,14 +23,19 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+
+	@NotBlank(message = "Name required!!!")
+	@Size(min=3,max=20,message = "minimum 3 and maximum 20..")
 	private String userName;
 	@Column(unique = true)
+	@Email(regexp = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$")
 	private String email;
 	private String password;
 	private String role;
 	private boolean enabled;
 	private String imageUrl;
 	@Column(length = 500)
+	@Size(max=500)
 	private String about;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,mappedBy = "user")

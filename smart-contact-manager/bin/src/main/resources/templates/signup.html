@@ -28,25 +28,15 @@
 
 
 						<h1 class="text-center">Register Here !!</h1>
-						<form novalidate th:action="@{/do_register}" method="post"
+						<form th:action="@{/do_register}" method="post"
 							th:object="${user}">
 
 							<!-- Name Field-->
 							<div class="form-group">
-								<label for="name_field"
-									   class="form-label">Name </label> <input
-									   name="userName"
-									   type="text"
-									   class="form-control"
-									   id="name_id"
-									   aria-describedby="NameHelp"
-									   placeholder="Enter Here"
-									   th:classappend="${#fields.hasErrors('userName') ? 'is-invalid':''}"
-									   th:value="${user.userName}">
-
-									<div class="invalid-feedback" th:each="e : ${#fields.errors('userName')}" th:text="${e}">
-
-     							 </div>
+								<label for="name_field" class="form-label">Name </label> <input
+									name="userName" type="text" class="form-control" id="name_id"
+									aria-describedby="NameHelp" placeholder="Enter Here" required
+									th:value="${user.userName}">
 							</div>
 
 							<!-- Email Field-->
@@ -54,9 +44,7 @@
 								<label for="email_field" class="form-label">Email
 									address</label> <input type="email" name="email" class="form-control"
 									id="email_id" aria-describedby="emailHelp"
-									placeholder="Your Email" required th:value="${user.email}"
-									th:classappend="${#fields.hasErrors('email') ? 'is-invalid':''}">
-									<div class="invalid-feedback" th:each="e : ${#fields.errors('email')}" th:text="${e}">
+									placeholder="Your Email" required th:value="${user.email}">
 							</div>
 
 							<!-- Password Field-->
